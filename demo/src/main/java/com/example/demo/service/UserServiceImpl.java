@@ -1,0 +1,67 @@
+package com.example.demo.service;
+
+import com.example.demo.model.Role;
+import com.example.demo.model.User;
+import com.example.demo.repository.UserDAOImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.sql.SQLException;
+import java.util.List;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private UserDAOImpl userDAO;
+
+    @Override
+    public List<Role> selectRolesByUserId(Integer id) {
+        return userDAO.selectRolesByUserId(id);
+    }
+
+    @Override
+    public List<Role> selectallRoles() {
+        return userDAO.selectallRoles();
+    }
+
+    @Override
+    public List<User> userById(Integer id) {
+        return userDAO.userById(id);
+    }
+
+    @Override
+    public boolean checkExistsPerson(String login) {
+        return (userDAO.checkExistsPerson(login));
+    }
+
+    @Override
+    public User findByLoginUser(String login) {
+        return (userDAO.findByLoginUser(login));
+    }
+
+    @Override
+    public List<Role> findByUserRole(String login) {
+        return (userDAO.findByUserRole(login));
+    }
+
+    @Override
+    public List<User> findAllUser() {
+        return (userDAO.findAllUser());
+    }
+
+    @Override
+    public boolean createUser(User user, List<Role> roles) throws SQLException {
+        return (userDAO.createUser(user, roles));
+    }
+
+    @Override
+    public boolean updateUser(User user, List<Role> roles, Integer id) throws SQLException {
+        return (userDAO.updateUser(user, roles, id));
+    }
+
+    @Override
+    public boolean deleteUser(String login) throws SQLException {
+        return (userDAO.deleteUser(login));
+    }
+}
