@@ -4,6 +4,7 @@ import com.example.demo.model.Role;
 import com.example.demo.model.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Date;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    User getAllLogin(String username);
+    User getAllLogin(@Param("username") String username);
 
     List<User> userById(@Param("id") Integer id);
 

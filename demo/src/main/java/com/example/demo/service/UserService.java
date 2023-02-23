@@ -16,17 +16,19 @@ public interface UserService {
 
     List<User> userById(Integer id);
 
-    boolean checkExistsPerson(String login);
-
-    User findByLoginUser(String login);
-
-    List<Role> findByUserRole(String login);
+    User findByUserAuth(String username) throws ClassNotFoundException;
 
     List<User> findAllUser();
 
-    boolean createUser(User user,List<Role> roles) throws SQLException;
+    boolean createUser(User user, List<Role> roles) throws SQLException;
 
     boolean updateUser(User user, List<Role> roles, Integer id) throws SQLException;
 
     boolean deleteUser(String login) throws SQLException;
+
 }
+
+
+//    boolean checkExistsPerson(String login);
+//    User findByLoginUser(String login);
+//    List<Role> findByUserRole(String login);

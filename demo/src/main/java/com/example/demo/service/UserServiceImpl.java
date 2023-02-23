@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.model.Role;
 import com.example.demo.model.User;
+import com.example.demo.repository.LoginDaoImpl;
 import com.example.demo.repository.UserDAOImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDAOImpl userDAO;
+
+    @Autowired
+    LoginDaoImpl loginDaoImpl;
 
     @Override
     public List<Role> selectRolesByUserId(Integer id) {
@@ -30,19 +34,10 @@ public class UserServiceImpl implements UserService {
         return userDAO.userById(id);
     }
 
-    @Override
-    public boolean checkExistsPerson(String login) {
-        return (userDAO.checkExistsPerson(login));
-    }
 
     @Override
-    public User findByLoginUser(String login) {
-        return (userDAO.findByLoginUser(login));
-    }
-
-    @Override
-    public List<Role> findByUserRole(String login) {
-        return (userDAO.findByUserRole(login));
+    public User findByUserAuth(String username) throws ClassNotFoundException {
+        return loginDaoImpl.findByUserAuth(username);
     }
 
     @Override
@@ -65,3 +60,19 @@ public class UserServiceImpl implements UserService {
         return (userDAO.deleteUser(login));
     }
 }
+
+
+//    @Override
+//    public boolean checkExistsPerson(String login) {
+//        return (userDAO.checkExistsPerson(login));
+//    }
+
+//    @Override
+//    public User findByLoginUser(String login) {
+//        return (userDAO.findByLoginUser(login));
+//    }
+
+//    @Override
+//    public List<Role> findByUserRole(String login) {
+//        return (userDAO.findByUserRole(login));
+//    }
